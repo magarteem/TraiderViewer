@@ -4,8 +4,7 @@ import type { NextConfig } from "next";
 const path = require("path");
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  output: "standalone",
+  output: "export",
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
     prependData: '@use "./app/shared/styles/_variables.scss" as *;',

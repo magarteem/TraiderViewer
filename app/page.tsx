@@ -1,14 +1,16 @@
 import styles from "./page.module.css";
 import SolChart from "./widgets/SolChart";
+import { Content } from "./widgets/content/Content";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
+  
+      <main className={styles.page}>
         <div style={{ width: "90%", height: "500px" }}>
-          <SolChart />
+          {/*<SolChart />*/}
         </div>
+
+        <Content/>
       </main>
-    </div>
   );
 }

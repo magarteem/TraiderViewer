@@ -5,13 +5,14 @@ import styles from "./myFavorits.module.scss";
 import { useReadLocalStorage } from "usehooks-ts";
 import { useEffect, useState } from "react";
 import { Button } from "@/app/shared/ui";
+import { MultiValue } from "react-select";
 
 interface Props {
   useShowSearching: (state: boolean) => void;
-  favoritsLs: MyFavoritsType[] | null;
+  setStateFavorits: (selected: MultiValue<MyFavoritsType>) => void;
 }
 
-export const MyFavorits = ({ useShowSearching, favoritsLs }: Props) => {
+export const MyFavorits = ({ useShowSearching }: Props) => {
   //const stored = useReadLocalStorage<MyFavoritsType[]>("myVavorits");
   //const [favorites, setFavorites] = useState<MyFavoritsType[] | null>(null);
 

@@ -8,41 +8,28 @@ import { useState } from "react";
 import { Button } from "@/app/shared/ui";
 import { useLocalStorage } from "usehooks-ts";
 import { MyFavoritsType } from "@/app/shared/types/myFavoritsCoints";
+import { AsyncSelectTokens } from "@/app/shared/components";
 
 interface Props {
   useShowSearching: (state: boolean) => void;
-  favoritsLs: MyFavoritsType[] | null;
+  stateFavorites: MultiValue<MyFavoritsType> | [];
+  setStateFavorits: (selected: MultiValue<MyFavoritsType>) => void;
 }
 
-export const SearchToken = ({ useShowSearching, favoritsLs }: Props) => {
-  const [stateData, useStateData] = useState<MultiValue<MyFavoritsType> | []>([]);
-  const [favorites, setFavorites] = useLocalStorage("myVavorits", stateData);
+export const SearchToken = ({ useShowSearching, stateFavorites, setStateFavorits }: Props) => {
   const { data, isLoading } = useGetCointList();
 
   if (!data) return;
 
-  const loadOptions = async (inputValue: string): Promise<MyFavoritsType[]> => {
-    if (!data) return [];
-
-    // фильтруем по введенному тексту
-    const filtered = data.filter((x) => x.symbol.toLowerCase().includes(inputValue.toLowerCase()));
-
-    return filtered.map((x) => ({
-      label: x.symbol,
-      value: x.symbol,
-      price: x.price,
-    }));
-  };
-
   const handleChange = (selected: MultiValue<MyFavoritsType> | null) => {
     if (selected) {
-      useStateData(selected);
+      setStateFavorits(selected);
     }
   };
 
   const savedToLS = () => {
-    if (stateData.length > 0) {
-      setFavorites(stateData);
+    if (stateFavorites.length > 0) {
+      setStateFavorits(stateFavorites);
       useShowSearching(false);
     }
   };
@@ -54,19 +41,8 @@ export const SearchToken = ({ useShowSearching, favoritsLs }: Props) => {
     <div className={styles.searchToken}>
       <div className={styles.searchBlock}>
         <div className={styles.searchField}>
-          <AsyncSelect
-            cacheOptions
-            isMulti
-            defaultOptions={data?.map((x) => ({
-              label: x.symbol,
-              value: x.symbol,
-              price: x.price,
-            }))}
-            onChange={handleChange}
-            loadOptions={loadOptions}
-            placeholder="Выберите токен..."
-            className={styles.selector}
-          />
+          <AsyncSelectTokens setStateFavorits={setStateFavorits} stateFavorites={stateFavorites} />
+
           <div>
             <Button size="sm" onClick={savedToLS}>
               Save to LSe

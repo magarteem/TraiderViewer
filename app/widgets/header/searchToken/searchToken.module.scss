@@ -1,0 +1,58 @@
+.searchToken {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .selector {
+    width: 300px;
+  }
+
+  .searchBlock {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .searchField {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+
+  .favoritContent {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    .token {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      border-radius: 8px;
+      border: 1px solid;
+      padding: 4px 8px;
+
+      &:hover {
+        .item {
+          display: none;
+        }
+
+        .itemDell {
+          display: block;
+        }
+      }
+
+      .item {
+        display: block;
+      }
+
+      .itemDell {
+        display: none;
+        font-weight: 900;
+      }
+    }
+  }
+}

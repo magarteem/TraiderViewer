@@ -1,0 +1,21 @@
+.myFavorits {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 16px;
+
+  .myFavoritsItemBlock {
+    display: flex;
+    gap: 8px;
+
+    .myFavoritsItem {
+      cursor: pointer;
+      padding: 6px 8px;
+      background-color: gray;
+      color: aqua;
+      border-radius: 8px;
+      font-size: 12px;
+    }
+  }
+}

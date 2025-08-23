@@ -6,9 +6,9 @@ export default function Home() {
   return (
   
       <main className={styles.page}>
-        <div style={{ width: "90%", height: "500px" }}>
+        {/*<div style={{ width: "90%"}}>*/}
           {/*<SolChart />*/}
-        </div>
+        {/*</div>*/}
 
         <Content/>
       </main>

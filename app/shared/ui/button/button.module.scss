@@ -14,7 +14,9 @@
     pointer-events: none;
   }
   &.large {
+    height: 40px;
     padding: 5px 16px;
+    font-size: 16px;
   }
 }
 

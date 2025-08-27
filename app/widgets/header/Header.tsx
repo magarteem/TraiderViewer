@@ -2,21 +2,36 @@
 
 import { useState } from "react";
 import styles from "./header.module.scss";
-import { SearchToken } from "./searchToken/SearchToken";
-import { MyFavorits } from "./myFavorits/MyFavorits";
 import { MyFavoritsType } from "@/app/shared/types/myFavoritsCoints";
-import { useReadLocalStorage } from "usehooks-ts";
+import { useLocalStorage } from "usehooks-ts";
+import { SearchToken } from "../searchToken/SearchToken";
+import { MyFavorits } from "../myFavorits";
+import { MultiValue } from "react-select";
 
 export const Header = () => {
-  const favoritsLs = useReadLocalStorage<MyFavoritsType[]>("myVavorits");
+  const [favoritsLs, setFavoritsLs] = useLocalStorage<MultiValue<MyFavoritsType> | []>(
+    "myVavorits",
+    []
+  );
   const [showSearching, useShowSearching] = useState(false);
+
+  const savedToLS = (data: MultiValue<MyFavoritsType> | []) => {
+    if (data.length > 0) {
+      setFavoritsLs(data);
+      useShowSearching(false);
+    }
+  };
 
   return (
     <section className={styles.header}>
-      {showSearching ? (
-        <SearchToken useShowSearching={useShowSearching} favoritsLs={favoritsLs} />
+      {showSearching || !favoritsLs ? (
+        <SearchToken
+          useShowSearching={useShowSearching}
+          stateFavorites={favoritsLs}
+          savedToLS={savedToLS}
+        />
       ) : (
-        <MyFavorits useShowSearching={useShowSearching} favoritsLs={favoritsLs} />
+        <MyFavorits useShowSearching={useShowSearching} stateFavorites={favoritsLs} />
       )}
     </section>
   );

@@ -2,40 +2,28 @@
 
 import { MyFavoritsType } from "@/app/shared/types/myFavoritsCoints";
 import styles from "./myFavorits.module.scss";
-import { useReadLocalStorage } from "usehooks-ts";
 import { useEffect, useState } from "react";
 import { Button } from "@/app/shared/ui";
+import { MultiValue } from "react-select";
 
 interface Props {
   useShowSearching: (state: boolean) => void;
-  favoritsLs: MyFavoritsType[] | null;
+  stateFavorites: MultiValue<MyFavoritsType> | [];
 }
 
-export const MyFavorits = ({ useShowSearching, favoritsLs }: Props) => {
-  //const stored = useReadLocalStorage<MyFavoritsType[]>("myVavorits");
-  //const [favorites, setFavorites] = useState<MyFavoritsType[] | null>(null);
-
+export const MyFavorits = ({ useShowSearching, stateFavorites }: Props) => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  //useEffect(() => {
-  //  setFavorites(stored ?? []);
-  //}, [stored]);
+  if (!mounted) return null;
 
-  if (!mounted) {
-    return null;
-  }
-
-  //if (!favorits) {
-  //  return;
-  //}
   return (
     <div className={styles.myFavorits}>
       <div className={styles.myFavoritsItemBlock}>
-        {favoritsLs?.map((x) => (
+        {stateFavorites?.map((x) => (
           <Button
             key={x.value}
             size="sm"

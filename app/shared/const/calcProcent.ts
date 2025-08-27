@@ -1,0 +1,18 @@
+export const arraySum = [
+  "procent_01",
+  "procent_02",
+  "procent_03",
+  "procent_04",
+  "procent_05",
+  "procent_06",
+  "procent_07",
+  "procent_08",
+  "procent_09",
+  "procent_1",
+  "procent_2",
+  "procent_3",
+  "procent_4",
+  "procent_5",
+  "procent_10",
+  "procent_20",
+];

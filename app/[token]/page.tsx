@@ -5,6 +5,7 @@ import { useGetCointItem } from "../api/requests/useGetCointItem";
 import { Button } from "../shared/ui";
 import { useRouter } from "next/navigation";
 import SolChart from "../widgets/SolChart";
+import { CalcSumm } from "../widgets/calcSumm/CalcSumm";
 
 type Params = { token: string };
 
@@ -25,7 +26,9 @@ export default function Page({ params }: { params: Promise<Params> }) {
       <p>{data.symbol}</p>
       <p>{data.price}</p>
 
-      <SolChart nameToken={token} />
+      {/*<SolChart nameToken={token} />*/}
+
+      <CalcSumm summ={data.price} />
 
       <Button
         size="sm"

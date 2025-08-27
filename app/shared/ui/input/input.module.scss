@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  position: relative;
+
+  .inputText {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+  }
+  input {
+    border: 1px solid $info;
+    border-radius: 5px;
+    height: 30px;
+    @extend .inputText;
+    padding: 0 20px 0 10px;
+    color: $white;
+    background: $white;
+
+    &:focus {
+      border: 1px solid $main;
+    }
+    &:hover {
+      background-color: $warning;
+    }
+  }
+  input:-webkit-autofill {
+    -webkit-text-fill-color: $white !important;
+  }
+
+  input::placeholder {
+    color: $grey-light;
+    @extend .inputText;
+  }
+
+  //input:invalid {
+  //  border-color: red;
+  //  box-shadow: none;
+  //}
+}

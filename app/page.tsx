@@ -4,13 +4,12 @@ import { Content } from "./widgets/content/Content";
 
 export default function Home() {
   return (
-  
-      <main className={styles.page}>
-        {/*<div style={{ width: "90%"}}>*/}
-          {/*<SolChart />*/}
-        {/*</div>*/}
+    <main className={styles.page}>
+      {/*<div style={{ width: "90%"}}>*/}
+      {/*<SolChart />*/}
+      {/*</div>*/}
 
-        <Content/>
-      </main>
+      <Content />
+    </main>
   );
 }

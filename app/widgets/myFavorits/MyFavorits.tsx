@@ -5,6 +5,7 @@ import styles from "./myFavorits.module.scss";
 import { useEffect, useState } from "react";
 import { Button } from "@/app/shared/ui";
 import { MultiValue } from "react-select";
+import { useParams, usePathname, useRouter } from "next/navigation";
 
 interface Props {
   useShowSearching: (state: boolean) => void;
@@ -12,6 +13,8 @@ interface Props {
 }
 
 export const MyFavorits = ({ useShowSearching, stateFavorites }: Props) => {
+  const { push, replace } = useRouter();
+  const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -19,6 +22,11 @@ export const MyFavorits = ({ useShowSearching, stateFavorites }: Props) => {
   }, []);
 
   if (!mounted) return null;
+
+  const openDetailsToken = (value: string) => {
+    console.log("gggggggggggggggg", value, pathname);
+    push(value);
+  };
 
   return (
     <div className={styles.myFavorits}>
@@ -28,9 +36,7 @@ export const MyFavorits = ({ useShowSearching, stateFavorites }: Props) => {
             key={x.value}
             size="sm"
             btnTypeStyle="second"
-            onClick={() => {
-              useShowSearching(true);
-            }}
+            onClick={() => openDetailsToken(x.value)}
           >
             {x.label}
           </Button>

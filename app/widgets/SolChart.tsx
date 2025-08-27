@@ -13,7 +13,11 @@ type Candle = {
   y: [number, number, number, number]; // [open, high, low, close]
 };
 
-export default function SolChart() {
+interface Props {
+  nameToken: string;
+}
+
+export default function SolChart({ nameToken }: Props) {
   const [series, setSeries] = useState<{ name: string; data: Candle[] }[]>([
     { name: "SOL/USDT", data: [] },
   ]);
@@ -21,7 +25,7 @@ export default function SolChart() {
 
   async function fetchData() {
     const res = await fetch(
-      "https://data-api.binance.vision/api/v3/klines?symbol=SOLUSDT&interval=1m&limit=100"
+      `https://data-api.binance.vision/api/v3/klines?symbol=${nameToken}&interval=1m&limit=100`
     );
     const raw = await res.json();
 
@@ -92,12 +96,7 @@ export default function SolChart() {
 
   return (
     <div className="p-4 bg-white shadow rounded-2xl">
-      <ReactApexChart
-        options={options}
-        series={series}
-        type="candlestick"
-        height={500}
-      />
+      <ReactApexChart options={options} series={series} type="candlestick" height={500} />
     </div>
   );
 }

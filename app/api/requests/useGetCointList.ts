@@ -2,9 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import axios, { AxiosResponse } from "axios";
 import { ResponseCointsType } from "../types/cointsType";
 
-
-
-
 export function useGetCointList() {
   return useQuery({
     queryKey: [`useGetCointList`],

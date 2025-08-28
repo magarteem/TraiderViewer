@@ -1,14 +1,24 @@
-"use client"
+"use client";
 
-import { PropsWithChildren, useState } from "react";
-import s from "./content.module.scss";
+import styles from "./content.module.scss";
+import { useLocalStorage } from "usehooks-ts";
+import { MultiValue } from "react-select";
+import { MyFavoritsType } from "@/app/shared/types/myFavoritsCoints";
+import SolChart from "../SolChart";
 
 export const Content = () => {
- 
+  const [favoritsLs, setFavoritsLs] = useLocalStorage<MultiValue<MyFavoritsType> | []>(
+    "myVavorits",
+    []
+  );
 
   return (
-    <section className={s.content}>
- content
+    <section className={styles.content}>
+      {favoritsLs.map((x) => (
+        <div className={styles.wrapGraphik}>
+          <SolChart nameToken={x.value} />
+        </div>
+      ))}
     </section>
   );
 };

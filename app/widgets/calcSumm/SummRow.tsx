@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styles from "./calcSumm.module.scss";
 
 interface Props {
@@ -7,16 +6,15 @@ interface Props {
 }
 
 export const SummRow = ({ summ, procent }: Props) => {
-  const [value, setValue] = useState("");
-  const s = +value.replace(/[,;:\s]+/g, ".");
+  const result = (summ * procent) / 100;
+  const float = (num: number) => Number(num.toFixed(3));
 
   return (
     <div className={styles.calcSumm}>
-      <h1>{summ.toFixed(3)}</h1>
-      {procent} % <b style={{ color: "blue", width: "50px" }}>{summ.toFixed(3)}</b>
+      {procent} % <b style={{ color: "blue", width: "50px" }}>{float(result)}</b>
       &nbsp;&nbsp;
-      {/*<b style={{color:"green", width:"50px"}}> {float(s + result)}</b>
-<b style={{color:"red", width:"50px"}}>-${float(s - result)}</b>*/}
+      <b style={{ color: "green", width: "50px" }}> {float(summ + result)}</b>
+      <b style={{ color: "red", width: "50px" }}>-${float(summ - result)}</b>
     </div>
   );
 };

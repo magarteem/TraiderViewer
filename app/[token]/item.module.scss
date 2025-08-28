@@ -1,0 +1,13 @@
+.details {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .info {
+    font-size: 24px;
+    font-weight: 800;
+    display: flex;
+    gap: 16px;
+  }
+}

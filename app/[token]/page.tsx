@@ -6,6 +6,7 @@ import { Button } from "../shared/ui";
 import { useRouter } from "next/navigation";
 import SolChart from "../widgets/SolChart";
 import { CalcSumm } from "../widgets/calcSumm/CalcSumm";
+import styles from "./item.module.scss";
 
 type Params = { token: string };
 
@@ -14,31 +15,31 @@ export default function Page({ params }: { params: Promise<Params> }) {
   const { data, isLoading } = useGetCointItem(token);
   const { push } = useRouter();
 
-  console.log(data);
-
   if (isLoading || !data) {
     return <p>Loading ... </p>;
   }
 
   return (
-    <div>
-      <h1>{token}</h1>
-      <p>{data.symbol}</p>
-      <p>{data.price}</p>
-
-      {/*<SolChart nameToken={token} />*/}
+    <div className={styles.details}>
+      <div className={styles.info}>
+        <p>{data.symbol}</p>
+        <p>{data.price}</p>
+      </div>
 
       <CalcSumm summ={data.price} />
 
-      <Button
-        size="sm"
-        btnTypeStyle="second"
-        onClick={() => {
-          push("/");
-        }}
-      >
-        Go Back
-      </Button>
+      <div>
+        <Button
+          size="large"
+          btnTypeStyle="second"
+          onClick={() => {
+            push("/");
+          }}
+        >
+          Go Back
+        </Button>
+      </div>
+      <SolChart nameToken={token} />
     </div>
   );
 }

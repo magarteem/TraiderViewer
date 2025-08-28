@@ -1,6 +1,6 @@
 export interface CointsType {
   symbol: string,
-  price: number
+  price: string
 }
 
 export type ResponseCointsType = CointsType[]

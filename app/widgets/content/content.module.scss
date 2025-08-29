@@ -1,7 +1,10 @@
 .content {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
   padding: 10px;
-  //background-color: rebeccapurple;
+
+  .wrapGraphik {
+    background-color: beige;
+  }
 }

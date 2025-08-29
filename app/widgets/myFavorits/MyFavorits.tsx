@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/app/shared/ui";
 import { MultiValue } from "react-select";
 import { useParams, usePathname, useRouter } from "next/navigation";
+import { useMountedPage } from "@/app/shared/hooks/useMountedPage/useMountedPage";
 
 interface Props {
   useShowSearching: (state: boolean) => void;
@@ -13,13 +14,9 @@ interface Props {
 }
 
 export const MyFavorits = ({ useShowSearching, stateFavorites }: Props) => {
-  const { push, replace } = useRouter();
+  const { push } = useRouter();
   const pathname = usePathname();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const { mounted } = useMountedPage();
 
   if (!mounted) return null;
 

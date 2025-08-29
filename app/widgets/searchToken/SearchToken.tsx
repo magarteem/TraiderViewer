@@ -7,6 +7,7 @@ import { Button } from "@/app/shared/ui";
 import { MyFavoritsType } from "@/app/shared/types/myFavoritsCoints";
 import { AsyncSelectToken } from "@/app/shared/components";
 import { useLocalStorage } from "usehooks-ts";
+import { useMountedPage } from "@/app/shared/hooks/useMountedPage/useMountedPage";
 
 interface Props {
   useShowSearching: (state: boolean) => void;
@@ -16,19 +17,13 @@ interface Props {
 
 export const SearchToken = ({ useShowSearching, stateFavorites, savedToLS }: Props) => {
   const [stateData, setStateData] = useState<MultiValue<MyFavoritsType> | []>(stateFavorites ?? []);
-  const [mounted, setMounted] = useState(false);
+  const { mounted } = useMountedPage();
   const [favoritsLs, setFavoritsLs] = useLocalStorage<MultiValue<MyFavoritsType> | []>(
     "myVavorits",
     []
   );
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
+  if (!mounted) return null;
 
   const editFavorits = (token: MyFavoritsType) => {
     if (stateFavorites) {

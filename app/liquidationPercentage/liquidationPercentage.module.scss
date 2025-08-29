@@ -1,0 +1,88 @@
+.liquidationPercentage {
+  padding: 20px;
+
+  .table-wrapper {
+    overflow-x: auto; // чтобы таблица не ломалась на мобильных
+    padding: 1rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+    thead {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+
+    th,
+    td {
+      padding: 14px 18px;
+      text-align: center;
+      border-bottom: 1px solid #eaeaea;
+    }
+
+    tbody tr {
+      transition: background 0.2s ease;
+
+      &:nth-child(even) {
+        background: #f9fafb;
+      }
+
+      &:hover {
+        background: #eef6ff;
+      }
+    }
+
+    tbody td:first-child {
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    tbody td:last-child {
+      color: #0ea5e9;
+      font-weight: 500;
+    }
+  }
+
+  .link {
+    margin-top: 20px;
+    font-size: 25px;
+    display: inline-block;
+    color: #0ea5e9; // голубой акцент
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #0284c7; // чуть темнее при наведении
+    }
+
+    // underline-анимация
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 2px;
+      background-color: currentColor;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.25s ease;
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+}

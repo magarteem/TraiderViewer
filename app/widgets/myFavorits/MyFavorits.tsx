@@ -19,35 +19,34 @@ export const MyFavorits = ({ useShowSearching, stateFavorites }: Props) => {
   const { mounted } = useMountedPage();
 
   if (!mounted) return null;
-
-  const openDetailsToken = (value: string) => {
-    console.log("gggggggggggggggg", value, pathname);
-    push(value);
-  };
-
   return (
     <div className={styles.myFavorits}>
       <div className={styles.myFavoritsItemBlock}>
         {stateFavorites?.map((x) => (
-          <Button
-            key={x.value}
-            size="sm"
-            btnTypeStyle="second"
-            onClick={() => openDetailsToken(x.value)}
-          >
+          <Button key={x.value} size="sm" btnTypeStyle="second" onClick={() => push(x.value)}>
             {x.label}
           </Button>
         ))}
       </div>
 
-      <Button
-        size="sm"
-        onClick={() => {
-          useShowSearching(true);
-        }}
-      >
-        EDIT
-      </Button>
+      <div className={styles.btnGroup}>
+        <Button
+          size="sm"
+          onClick={() => {
+            useShowSearching(true);
+          }}
+        >
+          EDIT
+        </Button>
+        <Button
+          size="sm"
+          onClick={() => {
+            push("/liquidationPercentage");
+          }}
+        >
+          Likvidation
+        </Button>
+      </div>
     </div>
   );
 };
